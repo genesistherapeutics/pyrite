@@ -50,8 +50,6 @@ Columns suffixed `_A` / `_B` give the value for Pose A / Pose B respectively.
 **Temporal split & provenance**
 - `deposition_date`, `release_date` — PDB deposition / release dates.
 - `released_after_af3_cutoff` — boolean; `True` = released after the AlphaFold3 training cutoff (held-out / novel-complex split).
-- `map_available` — whether an experimental electron-density map is available for the entry.
-- `C1`, `C2`, `C3` — boolean pair-curation criterion flags used during dataset construction.
 
 **3D structure & interactions**
 - `pose_A`, `pose_B` — 3D ligand coordinates (atoms, elements, and x/y/z), compact text format.
@@ -71,7 +69,16 @@ Columns suffixed `_A` / `_B` give the value for Pose A / Pose B respectively.
 - `metric_lddt_pli_A`, `metric_lddt_pli_B` — lDDT-PLI (protein–ligand interaction lDDT) vs crystal.
 - `metric_gt_interaction_recall_A/B`, `metric_gt_interaction_iou_A/B` — recall / IoU of the pose's interactions vs the crystal interaction set.
 - `metric_gt_interaction_conserved_count_A/B`, `metric_gt_interaction_missing_count_A/B`, `metric_gt_interaction_extra_count_A/B`, `metric_gt_interaction_count_A/B` — conserved / missing / extra / total interaction counts vs crystal.
-- `gt_frac`, `a_frac`, `b_frac` — auxiliary consensus fractions from pair construction (ground-truth / Pose-A / Pose-B).
+
+**Electron-density support — 2Fo-Fc map (LABEL-LEAKING — analysis only)**
+
+Fractions of a ligand's heavy atoms that sit in strong experimental electron density, scored
+against the entry's 2Fo-Fc map (map value z-scored over the whole map, threshold ≥ 1.0 σ).
+The better-density-supported pose is the crystal-closer one, so these leak the label.
+- `gt_frac` — density-support fraction of the **deposited crystal ligand** (reference-quality check).
+- `a_frac`, `b_frac` — density-support fraction of **Pose A** / **Pose B**.
+- `map_available` — whether an experimental 2Fo-Fc density map (`<pdb>.ccp4`) was retrievable (`yes`/`no`/`error`). Constant `yes` here — the curated set keeps only entries with a usable map.
+- `C1`, `C2`, `C3` — density-based exclusion flags used to build the set (all `False` here; every pair passes). `C1` = `gt_frac < 0.75` (deposited ligand poorly supported by its own density); `C2` = correct-pose density fraction `< 0.50`; `C3` = `|correct − wrong density fraction| < 0.10` (density cannot discriminate the two poses).
 
 **Pose-intrinsic validity & strain (usable as inputs)**
 - `metric_pb_valid_A/B` — see above (PoseBusters validity is pose-intrinsic, not crystal-derived).
@@ -100,7 +107,7 @@ Columns suffixed `_A` / `_B` give the value for Pose A / Pose B respectively.
 
 **Water / ion context**
 - `water_class` — `protein_ligand_water` (crystallographic water bridges protein–ligand) or `no_water`.
-- `missing_ion_coordinating`, `missing_ion_nearby` — booleans: a deposited ion coordinates / is near the ligand but is absent from the modeled poses.
+- `missing_ion_coordinating` — boolean: a deposited metal/halide ion within 3.0 Å (inner-sphere coordination) of the crystal ligand is missing/under-represented in the reference structure. `missing_ion_nearby` — same, within 6.0 Å.
 - `missing_ion_elems` — element(s) of any such missing ion.
 - `missing_ion_min_dist` — distance to the nearest missing ion (Å; −1 if none).
 - `n_ions_deposited_near_lig`, `n_ions_reference` — ion counts near the ligand / in the reference structure.

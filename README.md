@@ -42,7 +42,9 @@ reasoning trace for each pair.
 
 The **ground truth is hidden by default** — use the *Show ground truth* toggle to reveal which
 pose is crystal-closer (RMSDs to the crystal pose, which pane is correct, and whether GRPO's
-pick was right). This lets you inspect the model's reasoning blind, then check the answer.
+pick was right). Toggling it also **overlays the experimental crystal ligand in green** in both
+panes, so you can see directly how each docked pose compares to the reference. This lets you
+inspect the model's reasoning blind, then check the answer.
 
 ## `pyrite_v6.1_curated` columns
 

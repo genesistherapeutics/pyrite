@@ -26,8 +26,22 @@ per structure), reported overall and split by `released_after_af3_cutoff`.
 
 - `data/pyrite_v6.1_curated.csv` / `.parquet` — the benchmark: 750 pairs × 113 columns.
 - `data/pyrite_grpo_predictions.csv` / `.parquet` — Qwen3.8-27B-GRPO predictions per pair.
+- `viewer.html` — self-contained interactive viewer (see below).
 
 Columns suffixed `_A` / `_B` give the value for Pose A / Pose B respectively.
+
+## Interactive viewer
+
+`viewer.html` is a self-contained, offline-friendly browser viewer to aid visualization of the
+benchmark — just open it in any modern browser (it loads 3Dmol.js from CDN). For each of the
+750 pairs it renders Pose A and Pose B side by side in 3D: the ligand pose as sticks inside a
+**lite binding pocket** (only pocket residues within ~6 Å of the ligand, drawn as a transparent
+cartoon so the poses stay in focus). It shows the **Qwen3.8-27B-GRPO** prediction and its full
+reasoning trace for each pair.
+
+The **ground truth is hidden by default** — use the *Show ground truth* toggle to reveal which
+pose is crystal-closer (RMSDs to the crystal pose, which pane is correct, and whether GRPO's
+pick was right). This lets you inspect the model's reasoning blind, then check the answer.
 
 ## `pyrite_v6.1_curated` columns
 

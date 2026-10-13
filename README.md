@@ -1,4 +1,4 @@
-# Pyrite — a protein–ligand pose-ranking benchmark
+# Pyrite: A Benchmark for Protein-Ligand Pose Ranking Agents
 
 Pyrite is a **pairwise pose-ranking** benchmark. Each item is a pair of docked poses — Pose A
 and Pose B — of the *same* protein–ligand complex, and the task is to pick the pose closer to

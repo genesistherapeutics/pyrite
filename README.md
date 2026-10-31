@@ -4,8 +4,18 @@ Pyrite is a **pairwise pose-ranking** benchmark. Each item is a pair of docked p
 and Pose B — of the *same* protein–ligand complex, and the task is to pick the pose closer to
 the experimental (crystallographic) binding mode. The ground-truth label is the closer pose.
 
-- **750 pose pairs** over **177 crystal structures** / **120 proteins**, all from public RCSB
-  PDB entries (177 unique PDB IDs).
+It ships as **two 750-pair sets**, built identically and with the **same 113-column schema** —
+**curated** (harder pairs, hand-selected) and **random** (randomly sampled pose pairs):
+
+| set | pairs (pre-AF3 / post-AF3) | structures (pre / post) | proteins |
+|---|--:|--:|--:|
+| curated | 750 (485 / 265) | 177 (121 / 56) | 120 |
+| random  | 750 (531 / 219) | 197 (136 / 61) | 138 |
+
+*pre/post-AF3 = the `released_after_af3_cutoff` temporal split (post-AF3 = released after the
+AlphaFold3 training cutoff, i.e. held-out / novel complexes).*
+
+- Each item is a pair of docked poses of the *same* complex, all from public RCSB PDB entries.
 - Each pose carries its **3D ligand coordinates**, a protein–ligand **interaction
   fingerprint**, and physics/geometry **descriptors** (MM-GBSA energy, Mogul torsion validity,
   torsion strain, PoseBusters validity, pose-shape descriptors).
@@ -23,19 +33,21 @@ per structure), reported overall and split by `released_after_af3_cutoff`.
 
 ## Files
 
-- `data/pyrite_v6.1_curated.csv` / `.parquet` — the benchmark: 750 pairs × 113 columns.
+- `data/pyrite_v6.1_curated.csv` / `.parquet` — curated set: 750 pairs × 113 columns.
+- `data/pyrite_v6.1_random.csv` / `.parquet` — random set: 750 pairs × 113 columns (identical schema).
 - `viewer.html` — self-contained interactive viewer (see below).
 
-Columns suffixed `_A` / `_B` give the value for Pose A / Pose B respectively.
+Columns suffixed `_A` / `_B` give the value for Pose A / Pose B respectively. The column reference
+below applies to **both** sets.
 
 ## Interactive viewer
 
 `viewer.html` is a fully self-contained, offline browser viewer to aid visualization of the
 benchmark — just open it in any modern browser (3Dmol.js and all data are embedded; no network
-needed). For each of the
-750 pairs it renders Pose A and Pose B side by side in 3D: the ligand pose as sticks inside a
-**lite binding pocket** (only pocket residues within ~6 Å of the ligand, drawn as a transparent
-cartoon so the poses stay in focus).
+needed). It covers **both sets** (curated + random); each pair is tagged with its set, and a
+filter lets you show curated, random, or all. For each pair it renders Pose A and Pose B side by
+side in 3D: the ligand pose as sticks inside a **lite binding pocket** (only pocket residues
+within ~6 Å of the ligand, drawn as a transparent cartoon so the poses stay in focus).
 
 The **ground truth is hidden by default** — use the *Show ground truth* toggle to reveal which
 pose is crystal-closer (RMSDs to the crystal pose and which pane is correct). Toggling it also
@@ -43,7 +55,7 @@ pose is crystal-closer (RMSDs to the crystal pose and which pane is correct). To
 each docked pose compares to the reference. This lets you inspect each pair blind, then check the
 answer.
 
-## `pyrite_v6.1_curated` columns
+## Columns (both `pyrite_v6.1_curated` and `pyrite_v6.1_random`)
 
 **Identifiers & label**
 - `pair_id` — unique pose-pair identifier.

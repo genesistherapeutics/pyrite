@@ -1,0 +1,17 @@
+structure_id,pdb_id,ligand_soi,ligand_auth,protein_residue,protein_atom,ligand_atom,distance_A,struct_conn_record,resolution_A,pairs_curated,pairs_random,pair_ids,note
+1ONH_WY4,1ONH,B1:WY4:1,A:WY4:400,A:SER64,OG,C7,1.35,covale,1.38,0,12,pair_00173;pair_00174;pair_00178;pair_00182;pair_00187;pair_00190;pair_00194;pair_00195;pair_00196;pair_00202;pair_00205;pair_00206,
+2ZJJ_F1J,2ZJJ,B1:F1J:1,A:F1J:449,A:CYS231,SG,S20,2.04,none,2.2,2,4,pair_00911;pair_00912;pair_00915;pair_00924;pair_00928;pair_00933,"disulfide to engineered Cys231 (T231C, tethering); benchmark SMILES is the free thiol"
+3GZJ_EVS,3GZJ,G1:EVS:1,B:EVS:1000,B:SER87,OG,CAF,1.48,none,2.19,0,4,pair_01315;pair_01316;pair_01318;pair_01320,benchmark SMILES is the free aldehyde
+4KIO_G6K,4KIO,L1:G6K:1,D:G6K:701,D:CYS442,SG,C1,1.81,covale,2.18,0,1,pair_03666,distance between matching alternate conformers
+4LYJ_21F,4LYJ,C1:21F:1,A:21F:202,A:CYS12,SG,C17,1.83,covale,1.93,0,2,pair_03758;pair_03770,
+5OO0_9YZ,5OO0,B1:9YZ:1,A:9YZ:301,A:CYS177,SG,C2,1.78,covale,1.6,4,8,pair_05712;pair_05717;pair_05721;pair_05722;pair_05724;pair_05727;pair_05728;pair_05731;pair_05734;pair_05735;pair_05740;pair_05744,
+5OSJ_AAK,5OSJ,B1:AAK:1,A:AAK:301,A:CYS177,SG,C9,1.77,covale,1.83,1,0,pair_05745,
+5Y9T_8RC,5Y9T,B1:8RC:1,A:8RC:1101,A:CYS797,SG,C41,1.83,covale,3.25,4,0,pair_06924;pair_06925;pair_06927;pair_06928,benchmark SMILES is the unreacted acrylamide
+6SC9_L68,6SC9,D1:L68:1,A:L68:2001,A:CYS885,SG,C14,1.77,covale,2.47,7,0,pair_08456;pair_08457;pair_08458;pair_08460;pair_08461;pair_08462;pair_08463,benchmark SMILES is the unreacted enone
+6UKD_Q9D,6UKD,B1:Q9D:1,A:Q9D:501,A:CYS192,SG,C56,1.93,covale,1.59,1,5,pair_08719;pair_08721;pair_08725;pair_08726;pair_08734;pair_08738,
+7CCX_DPM,7CCX,C1:DPM:1,A:DPM:401,A:CYS261,SG,CHA,1.62,covale,1.84,1,0,pair_09260,
+7N3K_ODN,7N3K,L1:ODN:1,C:ODN:201,C:CYS73,SG,C14,2.35,none,3.0,4,0,pair_10259;pair_10267;pair_10268;pair_10271,same adduct as R1:ODN:1; this copy is modelled at 2.35 A and has no record (3.0 A data)
+7N3K_ODN,7N3K,R1:ODN:1,G:ODN:201,G:CYS73,SG,C14,1.59,covale,3.0,2,0,pair_10278;pair_10279,
+8TQH_JX6,8TQH,B1:JX6:1,A:JX6:401,A:CYS145,SG,C8,1.82,covale,1.85,0,3,pair_12617;pair_12618;pair_12626,
+8TQH_JX6,8TQH,B2:JX6:1,A:JX6:401,A:CYS145,SG,C8,1.82,covale,1.85,0,1,pair_12641,
+9RHX_A1JGE,9RHX,C1:A1JGE:1,A:A1JGE:401,A:CYS145,SG,C13,1.76,covale,1.62,1,2,pair_13456;pair_13462;pair_13488,
